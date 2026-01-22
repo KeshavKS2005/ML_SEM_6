@@ -1,150 +1,65 @@
-\# Machine Learning Algorithms Laboratory – Exploratory Data Analysis \& Classification
+Machine Learning Algorithms Laboratory – Exploratory Data Analysis & Classification
 
+Project Workflow Overview
 
+Each notebook follows a consistent workflow.
 
-\\
+Dataset loading and inspection
+Exploratory data analysis (EDA)
+Statistical analysis of features
+Visualization using plots and heatmaps
+Identification of the machine learning task
 
-
-
-\## 1. Project Workflow Overview
-
-
-
-Each notebook follows a consistent workflow:
-
-
-
-1\. Dataset loading and inspection  
-
-2\. Exploratory data analysis (EDA)  
-
-3\. Statistical analysis of features  
-
-4\. Visualization using plots and heatmaps  
-
-5\. Identification of ML task  
-
-
-
-
-
----
-
-
-
-\## 2. Notebooks Included
-
-
+Notebooks Included
 
 loan.ipynb
-
 email.ipynb
-
 diabetes.ipynb
-
 iris.ipynb
-
 handwrittenchars.ipynb
 
+Dataset Overview
 
+Loan Dataset (loan.ipynb)
 
-\## Dataset Overview
+Statistical analysis and visualization of financial features were performed.
+Histograms, boxplots, and correlation heatmaps were used for analysis.
+The machine learning task is regression.
+The algorithm used is Linear Regression.
 
+Email Dataset (email.ipynb)
 
+Word count and category distribution were analyzed for spam detection.
+Class-wise patterns were visualized.
+The machine learning task is binary classification.
+The algorithm used is Naive Bayes.
 
-\### Loan Dataset (`loan.ipynb`)
+Diabetes Dataset (diabetes.ipynb)
 
-\- Performed statistical analysis and visualization of financial features
+Clinical and demographic features were explored.
+Correlations between medical attributes were identified.
+The machine learning task is binary classification.
+The algorithm used is Logistic Regression.
 
-\- Used histograms, boxplots, and correlation heatmaps  
+Iris Dataset (iris.ipynb)
 
-\- \*\*ML Task:\*\* Regression  
+Feature distributions of iris flower measurements were studied.
+Inter-feature relationships were analyzed.
+The machine learning task is multi-class classification.
+The algorithm used is k-Nearest Neighbors (k-NN).
 
-\- \*\*Algorithm:\*\* Linear Regression  
+Handwritten Characters Dataset (handwrittenchars.ipynb)
 
----
+Handwritten character images were visualized.
+Pixel-level data structure was analyzed.
+The machine learning task is image classification.
+The algorithm used is Convolutional Neural Networks (CNN).
 
+Technologies Used
 
-
-\### Email Dataset (`email.ipynb`)
-
-\- Analyzed word count and category distribution for spam detection  
-
-\- Visualized class-wise patterns  
-
-\- \*\*ML Task:\*\* Binary Classification  
-
-\- \*\*Algorithms:\*\* Naive Bayes,
-
-
-
----
-
-\### Diabetes Dataset (`diabetes.ipynb`)
-
-\- Explored clinical and demographic features  
-
-\- Identified correlations between medical attributes  
-
-\- \*\*ML Task:\*\* Binary Classification  
-
-\- \*\*Algorithms:\*\* Logistic Regression  
-
-
-
----
-
-
-
-\### Iris Dataset (`iris.ipynb`)
-
-\- Studied feature distributions of iris flower measurements  
-
-\- Analyzed inter-feature relationships  
-
-\- \*\*ML Task:\*\* Multi-class Classification  
-
-\- \*\*Algorithm:\*\* k-Nearest Neighbors (k-NN)  
-
-
-
----
-
-\### Handwritten Characters (`handwrittenchars.ipynb`)
-
-\- Visualized handwritten character images  
-
-\- Analyzed pixel-level data structure  
-
-\- \*\*ML Task:\*\* Image Classification  
-
-\- \*\*Algorithm:\*\* Convolutional Neural Networks (CNN)  
-
-
-
----
-
-\## Technologies Used
-
-
-
-\- Python  
-
-\- NumPy  
-
-\- Pandas  
-
-\- Scikit-learn  
-
-\- Matplotlib  
-
-\- Seaborn  
-
-
-
----
-
-
-
-
-
+Python
+NumPy
+Pandas
+Scikit-learn
+Matplotlib
+Seaborn
