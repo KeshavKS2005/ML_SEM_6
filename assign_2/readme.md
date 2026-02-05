@@ -1,336 +1,112 @@
-\# Binary Email Classification using Naive Bayes and K-Nearest Neighbors
+Binary Email Classification using Naive Bayes and K-Nearest Neighbors
 
+This project implements and evaluates multiple machine learning models for a binary classification problem using the Spambase dataset.
 
+Project Workflow Overview
 
-This project implements and evaluates multiple machine learning models for a \*\*binary classification problem\*\* using the \*\*Spambase dataset\*\*. 
+Data loading and exploration
+Data preprocessing and feature scaling
+Model implementation
+Model evaluation using metrics and visualizations
+Hyperparameter tuning and optimization
+Bias–variance and overfitting analysis
 
----
+Data Loading and Exploration
 
+The dataset is loaded for analysis.
+Input features consist of numerical values extracted from email content.
+The target variable is binary.
 
+0 represents Non-Spam
+1 represents Spam
 
-\## 1. Project Workflow Overview
+Initial exploration includes dataset shape inspection and class distribution analysis to check for imbalance.
 
+Data Preprocessing
 
+The following preprocessing steps are implemented.
 
+Train–Test Split
 
+The dataset is split into training and testing sets.
+Stratification ensures the class distribution is preserved in both sets.
 
+Feature Scaling
 
+StandardScaler is applied to normalize features.
 
-1\. Data loading and exploration  
+Model Implementation
 
-2\. Data preprocessing and feature scaling  
+Naive Bayes Classifiers
 
-3\. Model implementation  
+Three variants of Naive Bayes are implemented.
 
-4\. Model evaluation using metrics and visualizations  
+Gaussian Naive Bayes
+This model assumes features follow a normal distribution and works well for continuous features.
 
-5\. Hyperparameter tuning and optimization  
+Multinomial Naive Bayes
+This model is designed for frequency-based features and is commonly used in text classification tasks.
 
-6\. Bias–variance and overfitting analysis  
+Bernoulli Naive Bayes
+This model assumes binary feature values and captures the presence or absence of features.
 
+Each model is trained on the training dataset, evaluated on the test dataset, and compared using consistent evaluation metrics.
 
+K-Nearest Neighbors (KNN)
 
+A baseline KNN classifier is implemented using scikit-learn.
+The model predicts labels based on majority voting among nearest neighbors.
+Distance-based weighting is also evaluated.
 
+Different values of k are tested, and performance trends are observed using accuracy plots.
 
-\## 2. Data Loading and Exploration
+Hyperparameter Tuning
 
+To optimize KNN performance, two approaches are used.
 
+Grid Search
+An exhaustive search is performed over the number of neighbors, distance metric, and neighbor search algorithm.
 
-\- The dataset is loaded .
+Randomized Search
+Random sampling from the hyperparameter space is used as a faster alternative to grid search.
 
-\- Input features consist of numerical values extracted from email content.
+The best hyperparameters are selected based on cross-validation accuracy.
 
-\- The target variable is binary:
+Neighbor Search Algorithms
 
-&nbsp; - `0` → Non-Spam  
+Two spatial indexing methods are compared: KDTree and BallTree.
 
-&nbsp; - `1` → Spam  
+Both are evaluated in terms of accuracy, training time, prediction time, and memory usage.
 
+Model Evaluation
 
+The models are evaluated using accuracy, precision, recall, F1-score, specificity, false positive rate, and ROC–AUC.
 
-Initial exploration includes:
+Visual evaluations include confusion matrices for each classifier, ROC curves to analyze class separation, accuracy versus k plots for KNN, and training versus validation accuracy plots to detect overfitting.
 
-\- Dataset shape inspection
+Overfitting and Underfitting Analysis
 
-\- Class distribution analysis to check imbalance
+Small values of k in KNN lead to overfitting due to high model variance.
+Large values of k cause underfitting due to excessive smoothing.
+Hyperparameter tuning helps achieve better generalization.
 
+Bias–Variance Analysis
 
+Naive Bayes exhibits high bias due to its strong independence assumption.
+KNN has high variance for small k values.
+Proper tuning balances the bias–variance trade-off effectively.
 
+Key Observations
 
-
----
-
-
-
-\## 3. Data Preprocessing
-
-
-
-The following preprocessing steps are implemented:
-
-
-
-\### Train–Test Split
-
-\- The dataset is split into training and testing sets.
-
-\- Stratification ensures the class distribution is preserved in both sets.
-
-
-
-\### Feature Scaling
-
-\- \*\*StandardScaler\*\* is applied to normalize features.
-
-
-
----
-
-
-
-\## 4. Model Implementation
-
-
-
-\### 4.1 Naive Bayes Classifiers
-
-
-
-Three variants of Naive Bayes are implemented:
-
-
-
-\- \*\*Gaussian Naive Bayes\*\*
-
-&nbsp; - Assumes features follow a normal distribution.
-
-&nbsp; - Works well for continuous features.
-
-
-
-\- \*\*Multinomial Naive Bayes\*\*
-
-&nbsp; - Designed for frequency-based features.
-
-&nbsp; - Commonly used in text classification tasks.
-
-
-
-\- \*\*Bernoulli Naive Bayes\*\*
-
-&nbsp; - Assumes binary feature values.
-
-&nbsp; - Captures presence or absence of features.
-
-
-
-Each model is:
-
-\- Trained on the training dataset
-
-\- Evaluated on the test dataset
-
-\- Compared using consistent evaluation metrics
-
-
-
----
-
-
-
-\### 4.2 K-Nearest Neighbors (KNN)
-
-
-
-\- A baseline KNN classifier is implemented using \*\*scikit-learn\*\*.
-
-\- The model predicts labels based on majority voting among nearest neighbors.
-
-\- Distance-based weighting is also evaluated.
-
-
-
-Key aspects:
-
-\- Different values of `k` are tested
-
-\- Performance trends are observed using accuracy plots
-
-
-
----
-
-
-
-\## 5. Hyperparameter Tuning
-
-
-
-To optimize KNN performance:
-
-
-
-\### Grid Search
-
-\- Exhaustive search over:
-
-&nbsp; - Number of neighbors (`k`)
-
-&nbsp; - Distance metric
-
-&nbsp; - Neighbor search algorithm
-
-
-
-\### Randomized Search
-
-\- Random sampling from the hyperparameter space
-
-\- Faster alternative to grid search
-
-
-
-The best hyperparameters are selected based on \*\*cross-validation accuracy\*\*.
-
-
-
----
-
-
-
-\## 6. Neighbor Search Algorithms
-
-
-
-Two spatial indexing methods are compared:
-
-
-
-\- \*\*KDTree\*\*
-
-\- \*\*BallTree\*\*
-
-Both are evaluated in terms of:
-
-\- Accuracy
-
-\- Training time
-
-\- Prediction time
-
-\- Memory usage
-
-
-
----
-
-
-
-\## 7. Model Evaluation
-
-
-
-The models are evaluated using the following metrics:
-
-
-
-\- Accuracy
-
-\- Precision
-
-\- Recall
-
-\- F1-Score
-
-\- Specificity
-
-\- False Positive Rate
-
-\- ROC–AUC
-
-
-
-\### Visual Evaluations
-
-\- Confusion matrices for each classifier
-
-\- ROC curves to analyze class separation
-
-\- Accuracy vs. `k` plots for KNN
-
-\- Training vs. validation accuracy to detect overfitting
-
-
-
----
-
-
-
-\## 8. Overfitting and Underfitting Analysis
-
-
-
-\- \*\*Small values of `k`\*\* in KNN lead to overfitting due to high model variance.
-
-\- \*\*Large values of `k`\*\* cause underfitting due to excessive smoothing.
-
-\- Hyperparameter tuning helps achieve better generalization.
-
-
-
----
-
-
-
-\## 9. Bias–Variance Analysis
-
-
-
-\- Naive Bayes exhibits \*\*high bias\*\* due to its strong independence assumption.
-
-\- KNN has \*\*high variance\*\* for small `k` values.
-
-\- Proper tuning balances the bias–variance trade-off effectively.
-
-
-
----
-
-
-
-\## 10. Key Observations
-
-
-
-\- Naive Bayes models are computationally efficient but less expressive.
-
-\- KNN achieves higher accuracy after tuning.
-
-\- Visualization plays a key role in diagnosing model behavior.
-
-
-
----
-
-
-
-\## 11. Technologies Used
-
-
-
-\- Python
-
-\- NumPy
-
-\- Pandas
-
-\- Scikit-learn
-
-\- Matplotlib
-
-\- Seaborn
-
-
-
-
-
+Naive Bayes models are computationally efficient but less expressive.
+KNN achieves higher accuracy after tuning.
+Visualization plays a key role in diagnosing model behavior.
+
+Technologies Used
+
+Python
+NumPy
+Pandas
+Scikit-learn
+Matplotlib
+Seaborn
