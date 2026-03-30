@@ -1,276 +1,61 @@
-Binary Classification using Logistic Regression and Support Vector Machine
-
-
-
-Objective:
-
-
-
-The objective of this experiment is to classify emails as spam or ham using two binary classification techniques:
-
-
-
-Logistic Regression
-
-
-
-Support Vector Machine (SVM)
-
-
-
-The experiment also focuses on understanding the effect of hyperparameter tuning on the classification performance of both models.
-
-
-
-Dataset Description:
-
-
-
-The experiment uses the Spambase dataset, which consists of numerical features extracted from email content. Each email is labeled as either spam or non-spam (ham).
-
-
-
-The dataset is commonly used for email spam classification tasks and is suitable for evaluating binary classifiers.
-
-
-
-Theory Overview:
-
-
-
-Logistic Regression:
-
-Logistic Regression is a probabilistic binary classification algorithm. It uses the sigmoid function to estimate the probability that a given input belongs to the positive class (spam). A threshold value, typically 0.5, is used to convert probabilities into class labels.
-
-
-
-Regularization Techniques:
-
-
-
-L1 Regularization (Lasso): Encourages sparsity by shrinking some coefficients to zero and helps in feature selection.
-
-
-
-L2 Regularization (Ridge): Penalizes large weights and improves model generalization.
-
-
-
-Important Logistic Regression Hyperparameters:
-
-
-
-
-
-Solver: liblinear and saga
-
-
-
-Support Vector Machine (SVM):
-
-SVM is a margin-based classifier that finds the optimal hyperplane separating two classes by maximizing the margin. Only a subset of data points, called support vectors, influence the decision boundary.
-
-
-
-SVM Kernels:
-
-
-
-Linear Kernel
-
-
-
-Polynomial Kernel
-
-
-
-Radial Basis Function (RBF) Kernel
-
-
-
-Sigmoid Kernel
-
-
-
-Important SVM Hyperparameters:
-
-
-
-C: Controls margin width and misclassification
-
-
-
-Gamma: Controls the influence of individual data points
-
-
-
-Degree: Used for polynomial kernel
-
-
-
-Hyperparameter Tuning:
-
-
-
-Two tuning strategies are discussed:
-
-
-
-Grid Search: Exhaustively searches through all parameter combinations using cross-validation
-
-
-
-Implementation Steps:
-
-Load the dataset
-
-Handle missing values
-
-Standardize numerical features
-
-Perform Exploratory Data Analysis (EDA)
-
-Split data into training and testing sets
-
-Train baseline Logistic Regression model
-
-Tune Logistic Regression hyperparameters
-
-Train SVM with different kernels
-
-Tune SVM hyperparameters
-
-Evaluate models using performance metrics
-
-Perform 5-Fold Cross-Validation
-
-Exploratory Data Analysis:
-
-
-
-Class distribution was analyzed to ensure there is no severe imbalance between spam and ham emails.
-
-
-
-Text length and word count distributions were studied.
-
-
-
-Boxplots were used to visualize spread and outliers in text length.
-
-
-
-Hyperparameter Search Space:
-
-
-
-Logistic Regression:
-
-
-
-Regularization: L1, L2
-
-
-
-C values: 0.01, 0.1, 1, 10, 100
-
-
-
-Solvers: liblinear, saga
-
-
-
-Support Vector Machine:
-
-
-
-Kernels: Linear, Polynomial, RBF, Sigmoid
-
-
-
-C values: 0.1, 1, 10, 100
-
-
-
-Gamma: scale, auto
-
-
-
-Polynomial Degree: 2, 3, 4
-
-
-
-Best Hyperparameters Obtained:
-
-
-
-Logistic Regression:
-
-C = 10
-
-Penalty = L2
-
-Solver = liblinear
-
-Best Cross-Validation Accuracy = 0.9819
-
-
-
-Support Vector Machine:
-
-Kernel = RBF
-
-C = 10
-
-Gamma = scale
-
-Best Cross-Validation Accuracy = 0.9850
-
-
-
-Performance Evaluation:
-
-
-
-Final Test Set Results:
-
-
-
-Logistic Regression:
-
-Accuracy = 0.9855
-
-Precision = 0.9766
-
-Recall = 0.9733
-
-F1 Score = 0.9750
-
-
-
-Support Vector Machine (RBF):
-
-Accuracy = 0.9874
-
-F1 Score = 0.9785
-
-
-
-Confusion matrices were plotted for both models to visualize classification performance.
-
-
-
-ROC curves and AUC values were generated, showing excellent discriminative ability for both classifiers.
-
-
-
-Bias–Variance Analysis:
-
-
-
-Both models achieved accuracy greater than 98% on validation and test datasets, indicating low bias.
-
-The closeness between cross-validation and test scores indicates low variance and good generalization.
-
-SVM with RBF kernel showed a slight improvement over Logistic Regression.
-
+# Machine Learning Lab Assignment 4: Email Spam Classification
+
+This directory contains the code, analysis, and visual outputs for Assignment 4 of the Machine Learning course. The primary objective of this assignment is to build and evaluate machine learning models (Logistic Regression and Support Vector Machines) for classifying emails as either "Spam" or "Ham" (Not Spam) using Natural Language Processing (NLP) techniques.
+
+## Files in this Directory
+
+*   **`ml_lab_4.ipynb`**: The main Jupyter Notebook containing the entire implementation, from data loading and preprocessing to model training, hyperparameter tuning, and evaluation.
+*   **`ml_04.pdf`**: The assignment problem statement or lab manual (PDF).
+*   **Visualizations and Plots (*.png)**: The notebook generates several plots that are saved as PNG files to analyze the data and model performance.
+
+## Project Workflow and Implementation Details
+
+Based on the contents of the `ml_lab_4.ipynb` notebook, the workflow of the assignment is as follows:
+
+### 1. Data Loading and Exploration
+*   **Dataset**: The project uses an email dataset (`spam_ham_dataset.csv`) containing 5,171 emails. Each email is labeled as 'spam' (1) or 'ham' (0).
+*   **Data Cleaning**: Unnecessary columns (`Unnamed: 0`) are dropped. The dataset consists of columns: `label`, `text`, and `label_num`.
+*   **Class Distribution**: The dataset contains 3,672 'ham' emails and 1,499 'spam' emails. This distribution is plotted and saved as `class_distribution.png`.
+*   **Text Analysis**: The length of the emails (character count) and the word counts are analyzed for both spam and ham emails, with histograms generated and saved as `text_length_analysis.png` and text boxplots saved as `text_boxplots.png`.
+
+### 2. Text Preprocessing and Feature Extraction
+*   **TF-IDF Vectorization**: The raw email text is converted into numerical features using `TfidfVectorizer` from `scikit-learn`.
+*   **Parameters applied**: Stop words are removed (`stop_words='english'`), `max_features` is set to 5000, and an `ngram_range` of (1, 2) is used (unigrams and bigrams).
+*   The resulting TF-IDF feature matrix has a shape of `(5171, 5000)`.
+
+### 3. Model Training and Hyperparameter Tuning
+
+#### Logistic Regression
+*   A Logistic Regression model is trained and optimized using `GridSearchCV`.
+*   **Hyperparameter Tuning**: Parameters tested include `C` values `[0.1, 1, 10, 100]` and `penalty` types `['l1', 'l2']` (with solver `liblinear`).
+*   **Results**: The best parameters found are `{'C': 10, 'penalty': 'l2', 'solver': 'liblinear'}`, yielding an impressive CV Accuracy of ~98.19%.
+*   Performance visualizations for the hyperparameter combinations are exported as `lr_hyperparam_performance.png`, `enhanced_lr_performance.png`, `lr_performance.png`, and `lr_white_performance.png`.
+
+#### Support Vector Machine (SVM)
+*   Various SVM kernels are compared: `linear`, `poly`, and `rbf`. The `rbf` (Radial Basis Function) kernel performed the best (Accuracy: ~98.74%, compared to linear at ~98.65% and poly at ~90.24%). This comparison is available in `svm_kernel_comparison.png`.
+*   **Hyperparameter Tuning**: A grid search is performed on the `rbf` kernel SVM with parameters `C`: `[0.1, 1, 10, 100]` and `gamma`: `['scale', 'auto']`.
+*   **Results**: The best parameters found are `{'C': 10, 'gamma': 'scale'}`, achieving a peak CV accuracy of ~98.50%.
+*   Visualizations showing the SVM training vs CV accuracy curve based on C are saved in `svm_hyperparam_performance.png` and `svm_simple_plot.png`.
+
+### 4. Cross-Validation and Model Evaluation
+*   **5-Fold Cross Validation**: Both optimized models undergo 5-fold Cross-Validation to ensure generalization. The CV results and analysis are saved in `cv_results.png`.
+*   **Metrics Calculated**: The models are assessed using Accuracy, Precision, Recall, and F1-Score. Both models score highly, generally in the 97%-98% threshold range across all metrics.
+*   **Confusion Matrices**: Confusion matrices mapping True Positives, True Negatives, False Positives, and False Negatives for the models are exported to `confusion_matrices.png`.
+*   **ROC Curves & AUC**: Receiver Operating Characteristic (ROC) plots comparing the trade-off between the True Positive Rate and False Positive Rate are plotted and saved as `roc_curves.png`. Individual model ROC curves are available at `roc_lr.png` and `roc_svm.png`.
+
+## Image Content Summary
+Here is a table explaining what each generated image represents:
+
+| File Name | Description |
+| :--- | :--- |
+| `class_distribution.png` | A bar chart showing the absolute counts of 'Ham' vs 'Spam' instances in the dataset. |
+| `text_length_analysis.png` | Histograms depicting the distribution of character counts and word counts grouped by class (Spam vs. Ham). |
+| `text_boxplots.png` | Boxplots displaying the variance and outliers in text lengths for the two classes. |
+| `lr_hyperparam_performance.png` | A plot demonstrating how changing Logistic Regression hyperparameters (like `C` and `penalty`) affects Cross-Validation Accuracy. |
+| `lr_performance.png` / `enhanced...` / `lr_white...` | Visual summaries of the Logistic Regression model's overall performance metrics including train/test curves. |
+| `svm_kernel_comparison.png` | Bar charts comparing Accuracy and Training Time across different SVM kernels (`linear`, `poly`, `rbf`). |
+| `svm_hyperparam_performance.png` | A line plot visualizing the accuracy curve representing the Trade-off parameter `C` against CV and train accuracy for the SVM model. |
+| `svm_simple_plot.png` | Simplified performance metric charts for the SVM model. |
+| `cv_results.png` | Graphical representation of the 5-Fold Cross-Validation accuracy scores for both Logistic Regression and SVM across each fold. |
+| `confusion_matrices.png` | Visual heatmaps showing the confusion matrices (Actual vs Predicted classifications) for both models. |
+| `roc_curves.png` / `roc_lr.png` / `roc_svm.png` | Plots showing the ROC curve and the AUC (Area Under the Curve) scores indicating the classification capability of the models. |
